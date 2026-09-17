@@ -4,7 +4,7 @@
 
 [![Python](https://img.shields.io/badge/Python-3.10%2B-blue.svg)](https://www.python.org/)
 [![Tests](https://img.shields.io/badge/pytest-89%20passed-success.svg)](https://pytest.org/)
-[![Model](https://img.shields.io/badge/LLM-Gemini%202.5%20Flash-orange.svg)](https://ai.google.dev/)
+[![Model](https://img.shields.io/badge/LLM-Gemini%203.6%20Flash-orange.svg)](https://ai.google.dev/)
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](#)
 
 Placement Assistant is an autonomous, tool-augmented AI agent built for college placement cells. It evaluates eligibility criteria against authoritative institutional data, registers drive applications, reserves interview slots, sends urgent student alerts, and maintains auditable conversational memory that survives program restarts.
@@ -88,11 +88,11 @@ Copy `.env.example` to `.env` and provide your Gemini API key:
 ```bash
 # Windows PowerShell
 $env:GEMINI_API_KEY = "your-gemini-api-key"
-$env:GEMINI_MODEL = "gemini-2.5-flash"
+$env:GEMINI_MODEL = "gemini-3.6-flash"
 
 # Linux / macOS
 export GEMINI_API_KEY="your-gemini-api-key"
-export GEMINI_MODEL="gemini-2.5-flash"
+export GEMINI_MODEL="gemini-3.6-flash"
 ```
 
 *(Note: API keys are not required if running in `--mock` mode or running test suites.)*

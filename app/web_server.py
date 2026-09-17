@@ -166,7 +166,7 @@ class PlacementRequestHandler(SimpleHTTPRequestHandler):
             if not use_mock and not api_key:
                 use_mock = True
 
-            provider = default_mock() if use_mock else GeminiProvider(os.environ.get("GEMINI_MODEL", "gemini-2.5-flash"))
+            provider = default_mock() if use_mock else GeminiProvider(os.environ.get("GEMINI_MODEL", "gemini-3.6-flash"))
 
             trace = []
             def on_step(entry):
