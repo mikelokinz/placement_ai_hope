@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Placement Assistant AI | Intelligent Career Portal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+  <div class="app-layout">
+    <!-- Sidebar: Student Selector & History -->
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="logo-icon">
+          <i data-lucide="sparkles"></i>
+        </div>
+        <div class="brand-text">
+          <h1>PlacementAI</h1>
+          <span class="badge-tag">Agentic Assistant</span>
+        </div>
+      </div>
+
+      <!-- Current Student Card -->
+      <div class="section-heading">STUDENT PERSONA</div>
+      <div class="student-selector">
+        <select id="studentSelect">
+          <option value="22CS045">22CS045 — Priya Raman (CSE)</option>
+          <option value="22IT017">22IT017 — Arjun Kumar (IT)</option>
+          <option value="22EC031">22EC031 — Divya Sekar (ECE)</option>
+          <option value="22ME008">22ME008 — Karthik Murugan (MECH)</option>
+        </select>
+      </div>
+
+      <div id="studentProfileCard" class="profile-card">
+        <div class="profile-header">
+          <div class="avatar" id="studentAvatar">PR</div>
+          <div class="profile-name-info">
+            <h3 id="studentName">Priya Raman</h3>
+            <span class="student-id" id="studentRoll">22CS045</span>
+          </div>
+        </div>
+        <div class="stats-grid">
+          <div class="stat-box">
+            <span class="stat-label">CGPA</span>
+            <span class="stat-val" id="statCgpa">8.4</span>
+          </div>
+          <div class="stat-box">
+            <span class="stat-label">Backlogs</span>
+            <span class="stat-val" id="statBacklogs">0</span>
+          </div>
+          <div class="stat-box">
+            <span class="stat-label">Branch</span>
+            <span class="stat-val" id="statBranch">CSE</span>
+          </div>
+          <div class="stat-box">
+            <span class="stat-label">Batch</span>
+            <span class="stat-val" id="statBatch">2026</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Settings / Model Selection -->
+      <div class="section-heading">MODEL & SESSION</div>
+      <div class="settings-card">
+        <div class="setting-row">
+          <span class="setting-label"><i data-lucide="cpu"></i> Model Mode</span>
+          <label class="toggle-switch">
+            <input type="checkbox" id="mockToggle">
+            <span class="slider"></span>
+          </label>
+        </div>
+        <div class="mode-info" id="modeInfoText">Using Real Gemini AI</div>
+        
+        <button id="newThreadBtn" class="btn-secondary w-full mt-2">
+          <i data-lucide="plus-circle"></i> New Conversation
+        </button>
+      </div>
+
+      <!-- Recent Threads -->
+      <div class="section-heading mt-auto">SAVED THREADS</div>
+      <div class="thread-list" id="threadList">
+        <div class="empty-state">No past sessions</div>
+      </div>
+    </aside>
+
+    <!-- Center: Interactive Chat Interface -->
+    <main class="chat-main">
+      <header class="chat-header">
+        <div class="chat-title">
+          <h2>Placement Cell Interactive Agent</h2>
+          <p>Ask anything about drives, rule checks, interview bookings, or notifications</p>
+        </div>
+        <div class="header-badges">
+          <span class="status-pill online"><span class="dot"></span> Agent Active</span>
+          <span class="thread-badge" id="activeThreadBadge">Thread: new</span>
+        </div>
+      </header>
+
+      <!-- Quick Prompt Chips -->
+      <div class="quick-prompts-bar">
+        <span class="chip-label">Quick Prompts:</span>
+        <button class="chip" data-prompt="Which placement drives are open for my branch?">🏢 Open Drives</button>
+        <button class="chip" data-prompt="Am I eligible for Zoho?">✅ Check Zoho</button>
+        <button class="chip" data-prompt="Apply me to Zoho drive">📝 Apply to Zoho</button>
+        <button class="chip" data-prompt="What is on my academic profile record?">👤 My Record</button>
+        <button class="chip" data-prompt="Where have I applied so far?">📊 My Applications</button>
+      </div>
+
+      <!-- Messages Container -->
+      <div class="messages-container" id="messagesContainer">
+        <div class="message assistant-msg welcome-msg">
+          <div class="msg-avatar"><i data-lucide="bot"></i></div>
+          <div class="msg-body">
+            <div class="msg-bubble">
+              <p>👋 Hello! I am your <strong>Placement Assistant AI</strong>.</p>
+              <p>I have direct access to placement cell tools for eligibility evaluation, application registration, and interview slot bookings. How can I help you today?</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Input Area -->
+      <div class="chat-input-area">
+        <form id="chatForm" class="chat-form">
+          <div class="input-wrapper">
+            <input type="text" id="chatInput" placeholder="Ask about open drives, eligibility, bookings..." autocomplete="off" />
+            <button type="submit" id="sendBtn" class="send-btn">
+              <i data-lucide="send"></i>
+            </button>
+          </div>
+        </form>
+      </div>
+    </main>
+
+    <!-- Right: Telemetry & Workspace Panel -->
+    <aside class="workspace-panel">
+      <div class="tabs-header">
+        <button class="tab-btn active" data-tab="drivesTab"><i data-lucide="briefcase"></i> Drives</button>
+        <button class="tab-btn" data-tab="appsTab"><i data-lucide="file-check"></i> Applied</button>
+        <button class="tab-btn" data-tab="traceTab"><i data-lucide="activity"></i> Trace & DB</button>
+      </div>
+
+      <div class="tab-content active" id="drivesTab">
+        <div class="tab-pane-title">
+          <h3>Upcoming Drives</h3>
+          <span class="sub-text">Live requirements & slots</span>
+        </div>
+        <div class="drives-list" id="drivesList">
+          <div class="loading-state">Loading drives...</div>
+        </div>
+      </div>
+
+      <div class="tab-content" id="appsTab">
+        <div class="tab-pane-title">
+          <h3>My Applications</h3>
+          <span class="sub-text">Current interview timeline</span>
+        </div>
+        <div class="apps-list" id="appsList">
+          <div class="empty-state">No applications submitted yet.</div>
+        </div>
+      </div>
+
+      <div class="tab-content" id="traceTab">
+        <div class="tab-pane-title">
+          <h3>Agent Execution Trace</h3>
+          <span class="sub-text">Step-by-step LLM and tool calls</span>
+        </div>
+        <div class="trace-container" id="liveTraceContainer">
+          <div class="empty-state">Ask the assistant a question to view live tool calls, arguments, latencies, and token telemetry.</div>
+        </div>
+      </div>
+    </aside>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
